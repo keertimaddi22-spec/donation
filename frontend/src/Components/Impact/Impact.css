@@ -1,0 +1,93 @@
+.impact {
+  background: #fffdf5;
+  padding: 80px 20px 80px 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  background: #f0fdf4; 
+}
+
+.impact-content h2 {
+  font-size: 2.5rem;
+  color: #b8860b;
+  margin-bottom: 10px;
+}
+
+.impact-content p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 700px;
+  margin: 0 auto 10px auto;
+  line-height: 1.7;
+}
+
+/* Chart fixes */
+.chart-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 30px auto 50px auto;
+  position: relative;
+}
+
+.recharts-legend-wrapper {
+  margin-top: -20px; /* bring legend closer under chart */
+}
+
+.recharts-legend-item text {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.recharts-tooltip-wrapper {
+  font-size: 0.9rem;
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+/* Impact Cards */
+.impact-stats {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.impact-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  padding: 25px 40px;
+  width: 250px;
+  transition: all 0.3s ease;
+}
+
+.impact-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
+}
+
+.impact-card h3 {
+  font-size: 2rem;
+  color: #22c55e;
+  margin-bottom: 5px;
+}
+
+.impact-card p {
+  color: #555;
+  font-weight: 500;
+}
+
+/* Match legend colors with chart */
+.recharts-legend-item:nth-child(1) .recharts-legend-icon {
+  fill: #facc15 !important; /* Education - Yellow */
+}
+
+.recharts-legend-item:nth-child(2) .recharts-legend-icon {
+  fill: #22c55e !important; /* Food - Green */
+}
+
+.recharts-legend-item:nth-child(3) .recharts-legend-icon {
+  fill: #3b82f6 !important; /* Health - Blue */
+}

@@ -1,0 +1,257 @@
+/* 🌸 Full Background */
+.contact-container {
+  background: linear-gradient(
+    135deg,
+    #fff7d1,
+    #ffe57f
+  ); /* soft yellow gradient */
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  padding: 20px;
+}
+
+/* 🌼 Glass-style centered card */
+.contact-card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 22px;
+  padding: 40px 50px;
+  max-width: 600px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.9s ease-in;
+}
+
+/* Header */
+.contact-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: #c49000;
+  margin-bottom: 10px;
+}
+
+.contact-subtitle {
+  color: #5a4d00;
+  font-size: 1.05rem;
+  margin-bottom: 35px;
+}
+
+/* Info Card */
+.contact-info-card {
+  background: #fff8dc;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+  margin-bottom: 35px;
+}
+
+.contact-info-card h3 {
+  color: #b8860b;
+  margin-bottom: 12px;
+}
+
+.social-icons a {
+  margin: 0 8px;
+  color: #c49000;
+  font-size: 1.3rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #ffca28;
+}
+
+/* Feedback Button */
+.feedback-btn {
+  background: linear-gradient(135deg, #ffeb3b, #fbc02d);
+  color: #333;
+  padding: 12px 26px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(251, 192, 45, 0.35);
+  transition: all 0.25s ease;
+}
+
+.feedback-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #fdd835, #ffee58);
+  box-shadow: 0 6px 18px rgba(251, 192, 45, 0.45);
+}
+
+/* 🟡 Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.modal-content {
+  background: #fffef5;
+  padding: 32px;
+  border-radius: 18px;
+  width: 400px;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+.modal-content h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #c49000;
+  margin-bottom: 25px;
+  position: relative;
+  letter-spacing: 0.5px;
+  text-transform: capitalize;
+}
+
+/* 🌸 cute underline animation */
+.modal-content h2::after {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  font-size: 1.3rem;
+  color: #fbc02d;
+  opacity: 0.9;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  font-weight: 600;
+  color: #444;
+  display: block;
+  margin-bottom: 6px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #fbc02d;
+  background: #fffef2;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+input[type="email"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1.5px solid #fbc02d;
+  background: #fffef2;
+  font-size: 0.95rem;
+}
+
+/* ✨ Fixed button layout */
+.thank-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.thank-buttons button {
+  background-color: #fbc02d;
+  color: #333;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  height: 42px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+.thank-buttons button:hover {
+  background-color: #ffeb3b;
+  transform: translateY(-2px);
+}
+
+.thank-buttons button.cancel {
+  background-color: #d70000;
+  color: white;
+}
+
+.thank-buttons button.cancel:hover {
+  background-color: #cf5e5e;
+  color: black;
+}
+
+/* Submit + Back buttons */
+.submit-btn,
+.back-btn {
+  flex: 1;
+  height: 40px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #fbc02d, #fdd835);
+  color: #333;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, #fdd835, #ffeb3b);
+}
+
+.back-btn {
+  background: #e0e0e0;
+  color: #444;
+}
+
+.back-btn:hover {
+  background: #d6d6d6;
+}
+
+/* Thank You message */
+.thankyou-message {
+  text-align: center;
+  padding: 30px;
+}
+
+.thankyou-message h3 {
+  color: #c49000;
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+.thank-para {
+  margin-top: 10px;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

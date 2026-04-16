@@ -1,0 +1,222 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 60px;
+  background-color: #022b42; /* Deep elegant blue */
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fdc500; /* Brighter gold tone */
+  letter-spacing: 1.5px;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    color 0.3s ease;
+}
+
+.logo:hover {
+  color: #ffd84d;
+  transform: scale(1.05);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 35px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  position: relative;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Animated underline on hover */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #fdc500, #ff8c00);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav-links a:hover {
+  color: #fdc500;
+}
+
+/* === FIXED DONATE BUTTON (no underline) === */
+.donate-btn {
+  background-color: #e4a11b;
+  color: white;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.donate-btn:hover {
+  background-color: #cf8e0b;
+}
+
+/* Animated underline ONLY for normal links, NOT for donate */
+.nav-links a:not(.donate-btn)::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #fdc500, #ff8c00);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.nav-links a:not(.donate-btn):hover::after {
+  transform: scaleX(1);
+}
+
+/* --- Base Navbar styling (keep your old code above this) --- */
+
+/* Hamburger icon */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.menu-icon div {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+/* When open, animate lines into "X" */
+.menu-icon.open div:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.menu-icon.open div:nth-child(2) {
+  opacity: 0;
+}
+.menu-icon.open div:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Floating Donate Button (Mobile only) */
+.floating-donate {
+  display: none;
+}
+
+.login-btn {
+  background: #22c55e; /* green */
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 14px;
+  width: 7.5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.logout-btn {
+  background: #ef4444; /* red */
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 7.5rem;
+  height: 2.5rem;
+  border-radius: 1rem;
+}
+/* --- RESPONSIVE PART --- */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #022b42;
+    gap: 20px;
+    padding: 25px 0;
+    transform: translateY(-200%);
+    transition: all 0.4s ease;
+  }
+
+  .nav-links.active {
+    transform: translateY(0%);
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  .nav-links li {
+    font-size: 1.1rem;
+  }
+
+  .donate-btn {
+    display: none; /* hide on small screen (optional) */
+  }
+}
+
+@media (max-width: 768px) {
+  .floating-donate {
+    display: block;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f4b400;
+    color: #022b42;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    z-index: 1000;
+  }
+
+  .floating-donate:hover {
+    background-color: #ffd65c;
+    transform: scale(1.1);
+  }
+}

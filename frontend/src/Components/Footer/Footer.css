@@ -1,0 +1,44 @@
+.footer {
+  background: linear-gradient(180deg, #fff9db 0%, #facc15 100%);
+  color: #333;
+  text-align: center;
+  padding: 60px 20px 30px;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-content h3 {
+  font-size: 1.8rem;
+  color: #b8860b;
+  margin-bottom: 10px;
+}
+
+.footer-content p {
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 20px;
+  line-height: 1.6;
+}
+
+.footer-bottom {
+  font-size: 0.9rem;
+  color: #444;
+  margin-top: 30px;
+  opacity: 0.9;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  color: #333;
+  font-size: 1.4rem;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #b8860b;
+  transform: translateY(-4px);
+}

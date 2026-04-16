@@ -1,0 +1,214 @@
+.getinvolved {
+  background: #f8fff9; /* very light mint shade */
+  padding: 100px 20px;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.getinvolved h2 {
+  font-size: 2.5rem;
+  color: #b8860b;
+  margin-bottom: 15px;
+}
+
+.getinvolved p {
+  font-size: 1.1rem;
+  color: #444;
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+  line-height: 1.7;
+}
+
+/* === Cards Section === */
+.involve-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 80px;
+}
+
+.involve-card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  padding: 30px 25px;
+  max-width: 300px;
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.involve-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.involve-card h3 {
+  font-size: 1.3rem;
+  color: #b8860b;
+  margin-bottom: 12px;
+}
+
+.involve-card p {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.involve-card button {
+  background: #facc15;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+}
+
+.involve-card button:hover {
+  background: #ffdd33;
+  transform: scale(1.05);
+}
+
+/* === Progress Circles (optional) === */
+.progress-section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin-top: 40px;
+}
+
+.progress-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+}
+
+.progress-circle {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 15px;
+}
+
+.progress-item h4 {
+  font-size: 1rem;
+  color: #333;
+  margin-top: 8px;
+}
+
+/* ===================================== */
+/* 💛 SAME MODAL STYLING (NO UI CHANGE) */
+/* ===================================== */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background: #fffaf3;
+  padding: 40px 30px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 450px;
+  width: 90%;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.btn-back {
+  background: #ccc;
+  color: #333;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+  background: #b3b3b3;
+  transform: translateY(-2px);
+}
+
+/* ======================== */
+/* ✨ WIDE + SHORT POPUP  */
+/* ======================== */
+
+/* ======================== */
+/* ✨ NO-SCROLL FORM POPUP  */
+/* ======================== */
+
+.form-container {
+  background: #fffdf8;
+  padding: 28px 35px;
+  border-radius: 20px;
+
+  width: 500px; /* ★ WIDE POPUP */
+  max-width: 90%;
+
+  height: auto; /* ★ Auto height — NO SCROLL */
+  max-height: none;
+
+  overflow: visible; /* ★ Scroll completely removed */
+
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+/* Input Fields */
+.involved-form input,
+.involved-form select {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 18px;
+  border: 1.6px solid #e1e1e1;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.involved-form input:focus,
+.involved-form select:focus {
+  border-color: #e0b34b;
+  box-shadow: 0 0 4px rgba(224, 179, 75, 0.4);
+}
+
+/* Form Button */
+.involved-form button {
+  width: 100%;
+  padding: 13px 0;
+  border-radius: 12px;
+  background: #f7c845;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.involved-form button:hover {
+  background: #ffd357;
+  transform: scale(1.02);
+}
