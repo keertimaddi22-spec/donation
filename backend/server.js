@@ -14,64 +14,62 @@ app.use(express.json());
 
 const SECRET = "mysecretkey";
 
-// ✅ MongoDB connect
+// MongoDB
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected 💛"))
-  .catch((err) => console.log("Error:", err));
+  .catch((err) => console.log("DB error:", err));
 
-// ✅ Test route
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
 
-
-// ================== AUTH ==================
-
-// 👉 REGISTER
+// REGISTER
 app.post("/register", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    console.log("REGISTER HIT:", req.body);
 
-    // check if already exists
-    const existingUser = await User.findOne({ email });
+    const { name, email, password } = req.body;
 
-    if (existingUser) {
-      return res.json({ message: "User already exists ❌" });
+    const existing = await User.findOne({ email });
+
+    if (existing) {
+      return res.status(400).json({ message: "User already exists ❌" });
     }
 
-    const user = new User({ email, password });
+    const user = new User({ name, email, password });
     await user.save();
 
-    res.json({ message: "User registered ✅" });
+    console.log("USER SAVED:", user);
+
+    return res.status(201).json({ message: "Registered successfully ✅" });
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.log("REGISTER ERROR:", err);
+    return res.status(500).json({ message: err.message });
   }
 });
 
-
-// 👉 LOGIN
+// LOGIN
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email, password });
+    const user = await User.findOne({ email });
 
-    if (!user) {
+    if (!user || user.password !== password) {
       return res.status(400).json({ message: "Invalid credentials ❌" });
     }
 
-    const token = jwt.sign({ email }, SECRET);
+    const token = jwt.sign({ email }, SECRET, { expiresIn: "1d" });
 
-    res.json({ token });
+    return res.status(200).json({ token });
+
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    return res.status(500).json({ message: err.message });
   }
 });
 
-
-// ================== SERVER ==================
-
 app.listen(5000, () => {
-  console.log("Server running on port 5000 🚀");
+  console.log("Server running on 5000 🚀");
 });
