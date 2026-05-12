@@ -39,8 +39,8 @@ function Gallery() {
         ))}
       </div>
 
-      <Link to="/" className="back-btn">
-        ← Back
+      <Link to="/" className="backs-btn">
+        ← Back Home
       </Link>
     </motion.div>
   );

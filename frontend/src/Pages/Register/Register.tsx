@@ -1,28 +1,28 @@
 import { useState } from "react";
-import "./Login.css";
+import "./Register.css"
 
-function Login() {
+function Register() {
+  const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        localStorage.setItem("token", data.token);
-        alert("Login successful ✅");
-        window.location.href = "/donate";
+        alert("Registered successfully ✅");
+        window.location.href = "/login";
       } else {
-        alert(data.message || "Login failed ❌");
+        alert(data.message || "Register failed ❌");
       }
     } catch (err) {
       alert("Backend not reachable ❌");
@@ -31,8 +31,16 @@ function Login() {
 
   return (
     <div className="login-container">
-      <form onSubmit={handleLogin} className="login-form">
-        <h2>Login</h2>
+      <form onSubmit={handleRegister} className="login-form">
+        <h2>Register</h2>
+
+        <input
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
 
         <input
           type="email"
@@ -50,15 +58,15 @@ function Login() {
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
 
         <p>
-          Don’t have an account?{" "}
+          Already have an account?{" "}
           <span
-            onClick={() => (window.location.href = "/register")}
+            onClick={() => (window.location.href = "/login")}
             style={{ color: "#2563eb", cursor: "pointer" }}
           >
-            Register
+            Login
           </span>
         </p>
       </form>
@@ -66,4 +74,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

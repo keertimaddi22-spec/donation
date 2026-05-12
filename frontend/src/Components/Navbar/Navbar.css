@@ -167,34 +167,65 @@
 }
 /* --- RESPONSIVE PART --- */
 @media (max-width: 768px) {
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px;
+  }
+
+  /* LEFT SIDE GROUP (LOGO + HAMBURGER) */
+  .menu-icon {
+    display: flex;
+    order: 1;
+    margin-right: 10px;
+  }
+
+  .logo {
+    order: 2;
+    font-size: 1.3rem;
+    white-space: nowrap;
+  }
+
+  /* RIGHT SIDE BUTTONS */
+  .navbar > div:last-child {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    order: 3;
+  }
+
+  .login-btn,
+  .logout-btn {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  /* DROPDOWN MENU */
   .nav-links {
     position: absolute;
     top: 65px;
     left: 0;
     width: 100%;
+    background: #022b42;
+
     flex-direction: column;
     align-items: center;
-    background-color: #022b42;
-    gap: 20px;
-    padding: 25px 0;
+    gap: 18px;
+    padding: 20px 0;
+
     transform: translateY(-200%);
-    transition: all 0.4s ease;
+    transition: 0.3s ease;
   }
 
   .nav-links.active {
-    transform: translateY(0%);
-  }
-
-  .menu-icon {
-    display: flex;
-  }
-
-  .nav-links li {
-    font-size: 1.1rem;
+    transform: translateY(0);
   }
 
   .donate-btn {
-    display: none; /* hide on small screen (optional) */
+    display: none;
   }
 }
 

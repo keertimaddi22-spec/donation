@@ -21,6 +21,7 @@ import Contact from "./Pages/Contact/Contact";
 import ScrollToTop from "./ScrollToTop";
 
 // 👉 NEW IMPORT
+import Register from "./Pages/Register/Register";
 import Login from "./Pages/Login/Login";
 
 // 🔐 Protected Route
@@ -68,6 +69,7 @@ function AnimatedRoutes() {
 
         {/* 🔥 LOGIN ROUTE */}
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </AnimatePresence>
   );

@@ -34,7 +34,9 @@
   position: relative;
   background: #fff;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 /* ✨ Hover animation */
@@ -55,23 +57,21 @@
   transform: scale(1.05);
 }
 
-/* ⬅️ Back Button */
-.back-btn {
+.backs-btn {
   display: inline-block;
-  margin-top: 40px;
-  padding: 12px 30px;
-  background-color: #e4a11b;
+  margin-top: 40px; /* 👈 images ke baad gap */
+  padding: 10px 18px;
+  background: #022b42;
   color: white;
+  border-radius: 8px;
   text-decoration: none;
-  border-radius: 30px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  box-shadow: 0 5px 15px rgba(228, 161, 27, 0.4);
+  font-size: 14px;
+  transition: 0.3s ease;
 }
 
-.back-btn:hover {
-  background-color: #cf8e0b;
-  transform: translateY(-3px);
+.backs-btn:hover {
+  background: #034a6d;
+  transform: translateY(-2px);
 }
 
 /* 📱 Responsive Design */
