@@ -1,22 +1,26 @@
 import { useState } from "react";
-import "./Register.css";
 import Popup from "../../Components/Popup/Popup";
+import "./Register.css";
+import React from "react";
 
 function Register() {
-  const [name, setName] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
+  const [loading, setLoading] = useState(false);
+
+  const [popup, setPopup] = useState({
     show: false,
     message: "",
   });
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const res = await fetch("https://donation-hsbo.onrender.com/register", {
+      const res = await fetch("https://your-backend.onrender.com/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, password }),
@@ -25,26 +29,19 @@ function Register() {
       const data = await res.json();
 
       if (res.ok) {
-        setPopup({
-          show: true,
-          message: "Registered successfully ✅",
-        });
+        setPopup({ show: true, message: "Registered successfully ✅" });
 
         setTimeout(() => {
           window.location.href = "/login";
         }, 1200);
       } else {
-        setPopup({
-          show: true,
-          message: data.message || "Register failed ❌",
-        });
+        setPopup({ show: true, message: data.message || "Register failed ❌" });
       }
     } catch (err) {
-      setPopup({
-        show: true,
-        message: "Backend not reachable ❌",
-      });
+      setPopup({ show: true, message: "Backend not reachable ❌" });
     }
+
+    setLoading(false);
   };
 
   return (
@@ -57,8 +54,8 @@ function Register() {
         />
       )}
 
-      <form onSubmit={handleRegister} className="login-form">
-        <h2>Register</h2>
+      <form className="login-form" onSubmit={handleRegister}>
+        <h2>Create Account ✨</h2>
 
         <input
           type="text"
@@ -84,14 +81,13 @@ function Register() {
           required
         />
 
-        <button type="submit">Register</button>
+        <button type="submit" disabled={loading} className="btn">
+          {loading ? <span className="spinner"></span> : "Register"}
+        </button>
 
         <p>
           Already have an account?{" "}
-          <span
-            onClick={() => (window.location.href = "/login")}
-            style={{ color: "#2563eb", cursor: "pointer" }}
-          >
+          <span onClick={() => (window.location.href = "/login")}>
             Login
           </span>
         </p>
@@ -101,4 +97,3 @@ function Register() {
 }
 
 export default Register;
-

@@ -1,21 +1,25 @@
 import { useState } from "react";
-import "./Login.css";
 import Popup from "../../Components/Popup/Popup";
+import "./Login.css";
+import React from "react";
 
 function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
+  const [loading, setLoading] = useState(false);
+
+  const [popup, setPopup] = useState({
     show: false,
     message: "",
   });
 
-  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+ const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/login", {
+      const res = await fetch("https://your-backend.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -26,26 +30,19 @@ function Login() {
       if (res.ok) {
         localStorage.setItem("token", data.token);
 
-        setPopup({
-          show: true,
-          message: "Login successful ✅",
-        });
+        setPopup({ show: true, message: "Login successful ✅" });
 
         setTimeout(() => {
           window.location.href = "/donate";
         }, 1200);
       } else {
-        setPopup({
-          show: true,
-          message: data.message || "Login failed ❌",
-        });
+        setPopup({ show: true, message: data.message || "Login failed ❌" });
       }
     } catch (err) {
-      setPopup({
-        show: true,
-        message: "Backend not reachable ❌",
-      });
+      setPopup({ show: true, message: "Backend not reachable ❌" });
     }
+
+    setLoading(false);
   };
 
   return (
@@ -58,8 +55,8 @@ function Login() {
         />
       )}
 
-      <form onSubmit={handleLogin} className="login-form">
-        <h2>Login</h2>
+      <form className="login-form" onSubmit={handleLogin}>
+        <h2>Welcome Back 👋</h2>
 
         <input
           type="email"
@@ -77,14 +74,17 @@ function Login() {
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loading} className="btn">
+          {loading ? (
+            <span className="spinner"></span>
+          ) : (
+            "Login"
+          )}
+        </button>
 
         <p>
           Don’t have an account?{" "}
-          <span
-            onClick={() => (window.location.href = "/register")}
-            style={{ color: "#2563eb", cursor: "pointer" }}
-          >
+          <span onClick={() => (window.location.href = "/register")}>
             Register
           </span>
         </p>
