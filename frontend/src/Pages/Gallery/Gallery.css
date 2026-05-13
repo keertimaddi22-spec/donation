@@ -96,3 +96,12 @@
     max-width: 100%;
   }
 }
+
+@media (max-width: 480px) {
+  .gallery-title {
+    font-size: 20px; /* smaller text */
+    white-space: nowrap; /* 👈 single line */
+    overflow: hidden;
+    text-overflow: ellipsis; /* agar screen chhoti ho toh ... */
+  }
+}

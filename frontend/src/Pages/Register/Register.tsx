@@ -1,10 +1,16 @@
 import { useState } from "react";
-import "./Register.css"
+import "./Register.css";
+import Popup from "../../components/Popup/Popup";
 
 function Register() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
+    show: false,
+    message: "",
+  });
 
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,18 +25,38 @@ function Register() {
       const data = await res.json();
 
       if (res.ok) {
-        alert("Registered successfully ✅");
-        window.location.href = "/login";
+        setPopup({
+          show: true,
+          message: "Registered successfully ✅",
+        });
+
+        setTimeout(() => {
+          window.location.href = "/login";
+        }, 1200);
       } else {
-        alert(data.message || "Register failed ❌");
+        setPopup({
+          show: true,
+          message: data.message || "Register failed ❌",
+        });
       }
     } catch (err) {
-      alert("Backend not reachable ❌");
+      setPopup({
+        show: true,
+        message: "Backend not reachable ❌",
+      });
     }
   };
 
   return (
     <div className="login-container">
+
+      {popup.show && (
+        <Popup
+          message={popup.message}
+          onClose={() => setPopup({ show: false, message: "" })}
+        />
+      )}
+
       <form onSubmit={handleRegister} className="login-form">
         <h2>Register</h2>
 
@@ -75,3 +101,4 @@ function Register() {
 }
 
 export default Register;
+

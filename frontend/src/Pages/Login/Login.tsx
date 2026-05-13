@@ -1,36 +1,63 @@
 import { useState } from "react";
 import "./Login.css";
+import Popup from "../../components/Popup/Popup";
 
 function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
+  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
+    show: false,
+    message: "",
+  });
+
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     try {
-      const res = await fetch("https://donation-hsbo.onrender.com/login", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ email, password }),
-});
+      const res = await fetch("http://localhost:5000/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
 
       const data = await res.json();
 
       if (res.ok) {
         localStorage.setItem("token", data.token);
-        alert("Login successful ✅");
-        window.location.href = "/donate";
+
+        setPopup({
+          show: true,
+          message: "Login successful ✅",
+        });
+
+        setTimeout(() => {
+          window.location.href = "/donate";
+        }, 1200);
       } else {
-        alert(data.message || "Login failed ❌");
+        setPopup({
+          show: true,
+          message: data.message || "Login failed ❌",
+        });
       }
     } catch (err) {
-      alert("Backend not reachable ❌");
+      setPopup({
+        show: true,
+        message: "Backend not reachable ❌",
+      });
     }
   };
 
   return (
     <div className="login-container">
+
+      {popup.show && (
+        <Popup
+          message={popup.message}
+          onClose={() => setPopup({ show: false, message: "" })}
+        />
+      )}
+
       <form onSubmit={handleLogin} className="login-form">
         <h2>Login</h2>
 

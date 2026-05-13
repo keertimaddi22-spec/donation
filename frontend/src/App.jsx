@@ -6,11 +6,11 @@ import {
   Navigate,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./components/Navbar/Navbar";
 import Hero from "./Pages/Hero/Hero";
 import Mission from "./Pages/Mission/Mission";
-import Impact from "./Components/Impact/Impact";
-import Footer from "./Components/Footer/Footer";
+import Impact from "./components/Impact/Impact";
+import Footer from "./components/Footer/Footer";
 import GetInvolved from "./Pages/GetInvolved/GetInvolved";
 import Donate from "./Pages/Donate/Donate";
 import Gallery from "./Pages/Gallery/Gallery";
