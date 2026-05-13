@@ -9,17 +9,25 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors());
 app.use(express.json());
+
+// ✅ FIXED CORS (IMPORTANT)
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 const SECRET = "mysecretkey";
 
-// MongoDB
+// MongoDB connect
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB connected 💛"))
   .catch((err) => console.log("DB error:", err));
 
+// test route
 app.get("/", (req, res) => {
   res.send("Backend running 🚀");
 });
@@ -27,12 +35,9 @@ app.get("/", (req, res) => {
 // REGISTER
 app.post("/register", async (req, res) => {
   try {
-    console.log("REGISTER HIT:", req.body);
-
     const { name, email, password } = req.body;
 
     const existing = await User.findOne({ email });
-
     if (existing) {
       return res.status(400).json({ message: "User already exists ❌" });
     }
@@ -40,13 +45,9 @@ app.post("/register", async (req, res) => {
     const user = new User({ name, email, password });
     await user.save();
 
-    console.log("USER SAVED:", user);
-
     return res.status(201).json({ message: "Registered successfully ✅" });
-
   } catch (err) {
-    console.log("REGISTER ERROR:", err);
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: "Server error ❌" });
   }
 });
 
@@ -64,9 +65,8 @@ app.post("/login", async (req, res) => {
     const token = jwt.sign({ email }, SECRET, { expiresIn: "1d" });
 
     return res.status(200).json({ token });
-
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: "Server error ❌" });
   }
 });
 

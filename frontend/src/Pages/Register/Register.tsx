@@ -1,52 +1,42 @@
 import { useState } from "react";
 import Popup from "../../Components/Popup/Popup";
-import "./Register.css";
-import React from "react";
 
 function Register() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [name, setName] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const [loading, setLoading] = useState(false);
-
-  const [popup, setPopup] = useState({
+  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
     show: false,
     message: "",
   });
 
+  const API = "https://donation-hsbo.onrender.com";
+
   const handleRegister = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
 
-    try {
-      const res = await fetch("https://your-backend.onrender.com/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
-      });
+    const res = await fetch(`${API}/register`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, password }),
+    });
 
-      const data = await res.json();
+    const data = await res.json();
 
-      if (res.ok) {
-        setPopup({ show: true, message: "Registered successfully ✅" });
+    if (res.ok) {
+      setPopup({ show: true, message: "Registered successfully ✅" });
 
-        setTimeout(() => {
-          window.location.href = "/login";
-        }, 1200);
-      } else {
-        setPopup({ show: true, message: data.message || "Register failed ❌" });
-      }
-    } catch (err) {
-      setPopup({ show: true, message: "Backend not reachable ❌" });
+      setTimeout(() => {
+        window.location.href = "/login";
+      }, 1200);
+    } else {
+      setPopup({ show: true, message: data.message || "Register failed ❌" });
     }
-
-    setLoading(false);
   };
 
   return (
     <div className="login-container">
-
       {popup.show && (
         <Popup
           message={popup.message}
@@ -81,16 +71,7 @@ function Register() {
           required
         />
 
-        <button type="submit" disabled={loading} className="btn">
-          {loading ? <span className="spinner"></span> : "Register"}
-        </button>
-
-        <p>
-          Already have an account?{" "}
-          <span onClick={() => (window.location.href = "/login")}>
-            Login
-          </span>
-        </p>
+        <button type="submit">Register</button>
       </form>
     </div>
   );

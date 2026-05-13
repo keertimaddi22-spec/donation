@@ -1,53 +1,49 @@
 import { useState } from "react";
 import Popup from "../../Components/Popup/Popup";
-import "./Login.css";
-import React from "react";
 
 function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
-  const [loading, setLoading] = useState(false);
-
-  const [popup, setPopup] = useState({
+  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
     show: false,
     message: "",
   });
 
- const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+  const API = "https://donation-hsbo.onrender.com";
 
-    try {
-      const res = await fetch("https://your-backend.onrender.com/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const res = await fetch(`${API}/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await res.json();
+
+    if (res.ok) {
+      localStorage.setItem("token", data.token);
+
+      setPopup({
+        show: true,
+        message: "Login successful ✅",
       });
 
-      const data = await res.json();
-
-      if (res.ok) {
-        localStorage.setItem("token", data.token);
-
-        setPopup({ show: true, message: "Login successful ✅" });
-
-        setTimeout(() => {
-          window.location.href = "/donate";
-        }, 1200);
-      } else {
-        setPopup({ show: true, message: data.message || "Login failed ❌" });
-      }
-    } catch (err) {
-      setPopup({ show: true, message: "Backend not reachable ❌" });
+      setTimeout(() => {
+        window.location.href = "/donate";
+      }, 1200);
+    } else {
+      setPopup({
+        show: true,
+        message: data.message || "Login failed ❌",
+      });
     }
-
-    setLoading(false);
   };
 
   return (
     <div className="login-container">
-
       {popup.show && (
         <Popup
           message={popup.message}
@@ -56,7 +52,7 @@ function Login() {
       )}
 
       <form className="login-form" onSubmit={handleLogin}>
-        <h2>Welcome Back 👋</h2>
+        <h2>Login</h2>
 
         <input
           type="email"
@@ -74,13 +70,7 @@ function Login() {
           required
         />
 
-        <button type="submit" disabled={loading} className="btn">
-          {loading ? (
-            <span className="spinner"></span>
-          ) : (
-            "Login"
-          )}
-        </button>
+        <button type="submit">Login</button>
 
         <p>
           Don’t have an account?{" "}
