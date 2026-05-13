@@ -6,14 +6,14 @@ function Contact() {
   const [modalOpen, setModalOpen] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setModalOpen(false);
-    }, 4000);
-  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setSubmitted(true);
+  setTimeout(() => {
+    setSubmitted(false);
+    setModalOpen(false);
+  }, 4000);
+};
 
   const handleClose = () => {
     setModalOpen(false);
