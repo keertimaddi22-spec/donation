@@ -6,23 +6,23 @@ import {
   Navigate,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import Navbar from "./components/Navbar/Navbar";
-import Hero from "./Pages/Hero/Hero";
-import Mission from "./Pages/Mission/Mission";
-import Impact from "./components/Impact/Impact";
-import Footer from "./components/Footer/Footer";
-import GetInvolved from "./Pages/GetInvolved/GetInvolved";
-import Donate from "./Pages/Donate/Donate";
-import Gallery from "./Pages/Gallery/Gallery";
-import GetInvolvedFull from "./Pages/GetInvolvedFull/GetInvolvedFull";
-import News from "./Pages/News/News";
-import NewsDetails from "./Pages/News/NewsDetails";
-import Contact from "./Pages/Contact/Contact";
-import ScrollToTop from "./ScrollToTop";
+import Navbar from "./components/Navbar/Navbar.tsx";
+import Hero from "./Pages/Hero/Hero.tsx";
+import Mission from "./Pages/Mission/Mission.tsx";
+import Impact from "./components/Impact/Impact.tsx";
+import Footer from "./components/Footer/Footer.tsx";
+import GetInvolved from "./Pages/GetInvolved/GetInvolved.tsx";
+import Donate from "./Pages/Donate/Donate.tsx";
+import Gallery from "./Pages/Gallery/Gallery.tsx";
+import GetInvolvedFull from "./Pages/GetInvolvedFull/GetInvolvedFull.tsx";
+import News from "./Pages/News/News.tsx";
+import NewsDetails from "./Pages/News/NewsDetails.tsx";
+import Contact from "./Pages/Contact/Contact.tsx";
+import ScrollToTop from "./ScrollToTop.jsx";
 
 // 👉 NEW IMPORT
-import Register from "./Pages/Register/Register";
-import Login from "./Pages/Login/Login";
+import Register from "./Pages/Register/Register.tsx";
+import Login from "./Pages/Login/Login.tsx";
 
 // 🔐 Protected Route
 function ProtectedRoute({ children }) {
