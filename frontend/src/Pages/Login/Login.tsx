@@ -1,49 +1,58 @@
 import { useState } from "react";
+import "./Login.css";
 import Popup from "../../Components/Popup/Popup";
+
+const API = "https://donation-hsbo.onrender.com";
 
 function Login() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const [popup, setPopup] = useState<{ show: boolean; message: string }>({
+  const [popup, setPopup] = useState({
     show: false,
     message: "",
   });
 
-  const API = "https://donation-hsbo.onrender.com";
-
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await fetch(`${API}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      localStorage.setItem("token", data.token);
-
-      setPopup({
-        show: true,
-        message: "Login successful ✅",
+    try {
+      const res = await fetch(`${API}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
       });
 
-      setTimeout(() => {
-        window.location.href = "/donate";
-      }, 1200);
-    } else {
+      const data = await res.json();
+
+      if (res.ok) {
+        localStorage.setItem("token", data.token);
+
+        setPopup({
+          show: true,
+          message: "Login successful ✅",
+        });
+
+        setTimeout(() => {
+          window.location.href = "/donate";
+        }, 1200);
+      } else {
+        setPopup({
+          show: true,
+          message: data.message || "Login failed ❌",
+        });
+      }
+    } catch (err) {
       setPopup({
         show: true,
-        message: data.message || "Login failed ❌",
+        message: "Backend not reachable ❌",
       });
     }
   };
 
   return (
     <div className="login-container">
+
       {popup.show && (
         <Popup
           message={popup.message}
@@ -51,7 +60,7 @@ function Login() {
         />
       )}
 
-      <form className="login-form" onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="login-form">
         <h2>Login</h2>
 
         <input
@@ -74,7 +83,10 @@ function Login() {
 
         <p>
           Don’t have an account?{" "}
-          <span onClick={() => (window.location.href = "/register")}>
+          <span
+            onClick={() => (window.location.href = "/register")}
+            style={{ color: "#2563eb", cursor: "pointer" }}
+          >
             Register
           </span>
         </p>
