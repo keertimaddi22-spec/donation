@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Login.css";
-import Popup from "../../components/Popup/Popup";
+import Popup from "../../Components/Popup/Popup";
 
 function Login() {
   const [email, setEmail] = useState<string>("");

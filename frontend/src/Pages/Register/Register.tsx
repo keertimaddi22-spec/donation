@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Register.css";
-import Popup from "../../components/Popup/Popup";
+import Popup from "../../Components/Popup/Popup";
 
 function Register() {
   const [name, setName] = useState<string>("");
